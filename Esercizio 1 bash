@@ -1,1 +1,10 @@
+touch 'esercizio5.txt'
+for i in $(seq 1 10)
+do
+ echo $i >> esercizio5.txt
+done
 
+awk '{sum += $1} END {print "Totale:", sum}' esercizio5.txt
+
+R=$(expr 10 * 11 / 2) 
+echo 'Risulato='$R
