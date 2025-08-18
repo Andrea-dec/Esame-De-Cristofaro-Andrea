@@ -1,5 +1,5 @@
 function file_count { 
- 
+ ls -l | egrep -i -v '^d' | wc -l
 }
 
 file_count
