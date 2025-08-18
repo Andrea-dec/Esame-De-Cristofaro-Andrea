@@ -1,5 +1,7 @@
 function file_count { 
- ls -l | egrep -i -v '^d' | wc -l
+ local tot
+ tot=$(ls -l | egrep -i -v '^d' | wc -l)
+ echo $((tot - 1)) 
 }
 
 file_count
