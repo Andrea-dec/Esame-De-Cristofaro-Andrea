@@ -11,7 +11,7 @@ function dir_search {
    find . -maxdepth 1 -empty
    else
   echo "Directory doesn't exists."
-  echo (($?+1))
+  echo 'exit status:' $(($?+1))
 fi
 }
 
