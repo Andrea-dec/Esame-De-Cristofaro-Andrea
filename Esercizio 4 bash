@@ -13,3 +13,5 @@ function dir_search {
   echo "Directory doesn't exists."
 fi
 }
+
+dir_search '/filepath'
