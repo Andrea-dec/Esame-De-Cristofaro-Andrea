@@ -6,5 +6,4 @@ done
 
 awk '{sum += $1} END {print "Totale:", sum}' esercizio5.txt
 
-R=$((expr 10 * 11 / 2))
-echo 'Risulato='$R
+echo 'Risulato=' $((10 * 11 / 2))
