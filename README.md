@@ -2,6 +2,7 @@
 Abilità Informatiche e telematiche
 
 Sono riportati gli scripts della risoluzione degli esercizi 3, 4, 5 e 8 di Bash. 
+
 Istruzioni:
 Per verificare gli esercizi copiare ed incollare i codici nella SHELL. 
 
