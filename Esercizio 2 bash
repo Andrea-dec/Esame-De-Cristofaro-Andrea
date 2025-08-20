@@ -6,7 +6,7 @@ function file_count {
    cd $dir 
    echo $1 :
    tot=$(ls -l | egrep -i -v '^d' | wc -l)
-   echo $((tot - 1)) 
+   echo $((tot - 1)) files
    else
   echo "Directory doesn't exists."
   echo 'exit status:' $(($?+1))
