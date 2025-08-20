@@ -1,8 +1,11 @@
-function file_count { 
- local tot
- tot=$(ls -l | egrep -i -v '^d' | wc -l)
- echo $((tot - 1)) 
-}
+touch 'esercizio5.txt'
+for i in $(seq 1 10)
+do
+ echo $i >> esercizio5.txt
+done
 
-file_count
+awk '{sum += $1} END {print "Totale:", sum}' esercizio5.txt
+
+R=$(expr 10 * 11 / 2) 
+echo 'Risulato='$R
 
