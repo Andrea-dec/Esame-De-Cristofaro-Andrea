@@ -1,9 +1,11 @@
 function file_count { 
  dir="$1"
+ local tot
  if [[ -d "$dir" ]]; then
    echo "Directory exists."
    cd $dir 
-   
+   tot=$(ls -l | egrep -i -v '^d' | wc -l)
+   echo $((tot - 1)) 
    else
   echo "Directory doesn't exists."
   echo 'exit status:' $(($?+1))
