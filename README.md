@@ -1,5 +1,5 @@
 # Esame-De-Cristofaro-Andrea
-Corso: Abilità Informatiche e telematiche
+## Corso: Abilità Informatiche e telematiche
 
 Sono riportati gli scripts della risoluzione degli esercizi 3, 4, 5 e 8 di Bash. 
 
