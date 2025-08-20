@@ -1,18 +1,7 @@
-function dir_search { 
- dir="$1"
- if [[ -d "$dir" ]]; then
-   echo "Directory exists."
-   cd $dir 
-   echo ''Regular files:''
-   find . -maxdepth 1 -type f
-   echo ''Directories:''
-   find . -maxdepth 1 -type d
-   echo ''Empty files:''
-   find . -maxdepth 1 -empty
-   else
-  echo "Directory doesn't exists."
-  echo 'exit status:' $(($?+1))
-fi
+function file_count { 
+ local tot
+ tot=$(ls -l | egrep -i -v '^d' | wc -l)
+ echo $((tot - 1)) 
 }
 
-dir_search '/filepath'
+file_count
