@@ -1,17 +1,10 @@
-function file_count { 
- dir="$1"
- local tot
- if [[ -d "$dir" ]]; then
-   cd $dir 
-   echo $1 :
-   tot=$(ls -l | egrep -i -v '^d' | wc -l)
-   echo $((tot - 1)) files
-   else
-  echo "Directory doesn't exists"
-  echo "exit status: $(($?+1))"
-fi
-}
+touch 'esercizio5.txt'
+for i in $(seq 1 10)
+do
+ echo $i >> esercizio5.txt
+done
 
-file_count '/etc'
-file_count '/var'
-file_count '/usr/bin'
+awk '{sum += $1} END {print "Totale:", sum}' esercizio5.txt
+
+R=$(expr 10 * 11 / 2) 
+echo 'Risulato='$R
