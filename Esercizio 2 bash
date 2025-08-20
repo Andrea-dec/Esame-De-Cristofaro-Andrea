@@ -12,4 +12,6 @@ function file_count {
 fi
 }
 
-file_count '/filepath'
+file_count '/etc'
+file_count '/var'
+file_count '/usr/bin'
