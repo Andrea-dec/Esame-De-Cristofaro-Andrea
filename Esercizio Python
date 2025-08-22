@@ -44,7 +44,6 @@ pos_z = np.array(pos_z)
 #FIRST TASK
 
 Barionic_mass = Gas_mass + Stellar_mass
-
 #Linear fit
 coeff = np.polyfit(Barionic_mass,DM_mass, 1)
 m=coeff[0]
@@ -71,6 +70,7 @@ mpl.plot(Barionic_mass, DM_mass, marker='o', linestyle='none', label='data')
 mpl.title('log-log scale')
 mpl.legend()
 mpl.show()
+
 
 #SECOND TASK
 
@@ -127,14 +127,14 @@ ax1.set_xlabel('pos_x [ckpc/h]')
 ax1.set_title('x-y plane')
 
 riscale=10**5 #Riscaling constant
-ax1.scatter(pos_x, pos_y, c=np.log(Gas_mass*riscale+1), cmap='Greens_r', s=np.log(Stellar_mass*riscale+1)*10, label='scatter dots')
+ax1.scatter(pos_x, pos_y, c=np.log10(Gas_mass*riscale+1e-5), cmap='Greens_r', s=np.log10(Stellar_mass*riscale+1e-5)*20, label='scatter dots')
 ax1.legend()
 
 
 #Plotting z-y projection of data
 ax2.set_xlabel('pos_z [ckpc/h]')
 ax2.set_title('z-y plane')
-sc=ax2.scatter(pos_z, pos_y, c=np.log(Gas_mass*riscale+1), cmap='Greens_r', s=np.log(Stellar_mass*riscale+1)*10, label='scater dots')
+sc=ax2.scatter(pos_z, pos_y, c=np.log10(Gas_mass*riscale+1e-5), cmap='Greens_r', s=np.log10(Stellar_mass*riscale+1e-5)*20, label='scater dots')
 cbar = mpl.colorbar(sc, ax=ax2)
 cbar.set_label("Gas Mass [10^5 M_sun/h] (log)")
 ax2.legend()
@@ -144,7 +144,7 @@ mpl.show()
 mpl.ylabel('pos_z [ckpc/h]')
 mpl.xlabel('pos_x [ckpc/h]')
 mpl.title('Projected distribution of haloes x-z plane')
-sc1=mpl.scatter(pos_x, pos_z, c=np.log(Gas_mass*riscale+1), cmap='Greens_r', s=np.log(Stellar_mass*riscale+1)*5, label='scater dots')
+sc1=mpl.scatter(pos_x, pos_z, c=np.log10(Gas_mass*riscale+1e-5), cmap='Greens_r', s=np.log10(Stellar_mass*riscale+1e-5)*10, label='scater dots')
 cbar = mpl.colorbar(sc1)
 cbar.set_label("Gas Mass [10^5 M_sun/h] (log)")
 mpl.legend()
@@ -167,19 +167,19 @@ BH_mass2=np.array(BH_mass2)
 Stellar_mass2=np.array(Stellar_mass2)
 
 #Linear fit
-coeff = np.polyfit(np.log(Stellar_mass2), np.log(BH_mass2), 1)
+coeff = np.polyfit(np.log10(Stellar_mass2), np.log10(BH_mass2), 1)
 m=coeff[0]
 q=coeff[1]
 
 BH_mass2_fit=np.zeros_like(BH_mass2)
 for i in range(len(BH_mass2)):
- BH_mass2_fit[i]=m*np.log(Stellar_mass2[i])+q
+ BH_mass2_fit[i]=m*np.log10(Stellar_mass2[i])+q
 
 #Plotting data and fit
 mpl.ylabel('Stellar_mass [10^10 M_sun/h]')
 mpl.xlabel('BH_mass [10^10 M_sun/h]')
-mpl.plot(np.log(Stellar_mass2), np.log(BH_mass2), marker='o', color='blue', linestyle='none', label='data')
-mpl.plot(np.log(Stellar_mass2), BH_mass2_fit, color='orange', label='Fit')
+mpl.plot(np.log10(Stellar_mass2), np.log10(BH_mass2), marker='o', color='blue', linestyle='none', label='data')
+mpl.plot(np.log10(Stellar_mass2), BH_mass2_fit, color='orange', label='Fit')
 mpl.title('Haloes with BH_mass > 8*10^5 M / h (log-log scale)')
 mpl.legend()
 mpl.show()
@@ -224,11 +224,13 @@ Tot_mass_otherhaloes5=Tot_mass_otherhaloes[4,]
 Tot_mass_otherhaloes5=np.array(Tot_mass_otherhaloes5)
 dist5=np.array(dist5)
 
-histo1,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes1, dist1, bins=[20, 20])
-histo2,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes2, dist2, bins=[20, 20])
-histo3,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes3, dist3, bins=[20, 20])
-histo4,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes4, dist4, bins=[20, 20])
-histo5,xedges,yedge=np.histogram2d(Tot_mass_otherhaloes5, dist5, bins=[20, 20])
+mass_bins = np.logspace(np.log10(Tot_mass_otherhaloes1.min()+1e-5), np.log10(Tot_mass_otherhaloes1.max()), 20)
+histo1,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes1, dist1, bins=[mass_bins, 20])
+histo2,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes2, dist2, bins=[mass_bins, 20])
+histo3,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes3, dist3, bins=[mass_bins, 20])
+histo4,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes4, dist4, bins=[mass_bins, 20])
+histo5,xedges,yedge=np.histogram2d(Tot_mass_otherhaloes5, dist5, bins=[mass_bins, 20])
+
 histo_comulative=histo1+histo2+histo3+histo4+histo5
 
 mpl.pcolormesh(xedges, yedges, histo_comulative.T,cmap='Blues')
@@ -236,4 +238,5 @@ mpl.colorbar(label="Number of haloes")
 mpl.title('Comulative 2-D histogram of haloes with Tot_mass > 3.07*10^9 Mass_sun/h' )
 mpl.xlabel("Tot_mass [10^10 M_sun/h]")
 mpl.ylabel("Distance [ckpc/h]")
+mpl.xscale('log')
 mpl.show()
