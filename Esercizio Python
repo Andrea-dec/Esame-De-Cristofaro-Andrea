@@ -81,7 +81,7 @@ for i, item in enumerate(Tot_mass):
   if Tot_mass[i]>Tot_mass[idx]:
     idx = i
 
-#Computing distance of the other structures from the most massive one
+#Computing distance of each of the other structures from the most massive one
 distance = []
 for i in range(len(pos_x)):
   distance.append(np.sqrt((pos_x[i]-pos_x[idx])**2+(pos_y[i]-pos_y[idx])**2+(pos_z[i]-pos_z[idx])**2))
@@ -100,12 +100,13 @@ mpl.show()
 
 #THIRD TASK
 
-#Creating and plotting histogram of DM_mass distribution in log-log scale and evaluating mean and median
+#Creating and plotting histogram of DM_mass distribution in log scale and evaluating mean and median
+DM_bins = np.logspace(np.log10(DM_mass.min()+1e-5), np.log10(DM_mass.max()), 20) #Obtaining a logarithmic distribution of bins for the x-axis of the histogram
 mpl.xscale('log')
-mpl.yscale('log')
 mpl.xlabel('DM_mass [10^10 M_sun/h]')
 mpl.ylabel('Distribution')
-mpl.hist(DM_mass, bins=1000, color="darkturquoise", edgecolor="black")
+mpl.hist(DM_mass, bins=DM_bins, color="darkturquoise", edgecolor="black")
+
 mean = np.mean(DM_mass)
 median = np.median(DM_mass)
 
@@ -139,7 +140,7 @@ ax1.legend()
 ax2.set_xlabel('pos_z [ckpc/h]')
 ax2.set_title('z-y plane')
 sc=ax2.scatter(pos_z, pos_y, c=np.log10(Gas_mass*riscale1+1e-5), cmap='Greens_r', s=np.log10(Stellar_mass*riscale1+1e-5)*riscale2, label='scater dots')
-cbar = mpl.colorbar(sc, ax=ax2)
+cbar = mpl.colorbar(sc, ax=ax2) #Creating colorbar 
 cbar.set_label("Gas Mass [10^5 M_sun/h] (log)")
 ax2.legend()
 mpl.show()
@@ -203,10 +204,10 @@ for i in range(len(Tot_mass)):
   for k in range(len(pos_x)):
    if (k != i):
     dist[j,p]=np.sqrt((pos_x[i]-pos_x[k])**2+(pos_y[i]-pos_y[k])**2+(pos_z[i]-pos_z[k])**2) #Saving distances
-    Tot_mass_otherhaloes[j,p]=Tot_mass[k]                                                   #Saving all other masses (except of the i-th haloes whose mass is bigger then 3.07*10^9 M_sun/h)
+    Tot_mass_otherhaloes[j,p]=Tot_mass[k] #Saving all other masses (except of the i-th halo, whose mass is bigger then 3.07*10^9 M_sun/h)
     p=p+1
 
-#Creating arrays containing distances and masses for each of the 5 haloes
+#Creating arrays containing distances and masses of all the other structures (for each one of the 5 haloes)
 dist1=dist[0,]
 Tot_mass_otherhaloes1=Tot_mass_otherhaloes[0,]
 Tot_mass_otherhaloes1=np.array(Tot_mass_otherhaloes1)
@@ -233,18 +234,18 @@ Tot_mass_otherhaloes5=np.array(Tot_mass_otherhaloes5)
 dist5=np.array(dist5)
 
 #Obtaining 2-D histograms for each of the 5 haloes
-mass_bins = np.logspace(np.log10(Tot_mass_otherhaloes1.min()+1e-5), np.log10(Tot_mass_otherhaloes1.max()), 20) #Riscaling mass x-axis in the histograms
+mass_bins = np.logspace(np.log10(Tot_mass_otherhaloes1.min()+1e-5), np.log10(Tot_mass_otherhaloes1.max()), 20) #Obtaining a logarithmic distribution of bins for the x-axis of the histogram
 histo1,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes1, dist1, bins=[mass_bins, 20])
 histo2,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes2, dist2, bins=[mass_bins, 20])
 histo3,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes3, dist3, bins=[mass_bins, 20])
 histo4,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes4, dist4, bins=[mass_bins, 20])
 histo5,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes5, dist5, bins=[mass_bins, 20])
 
-#Obtaining and plotting comulative 2-D histograms summing up all 5 histograms
-#Setting log scale only on x-axis
+#Obtaining and plotting the comulative 2-D histogram summing up the 5 histograms
+#Setting log scale on x-axis
 mpl.xscale('log')
 histo_comulative=histo1+histo2+histo3+histo4+histo5
-mpl.pcolormesh(xedges, yedges, histo_comulative.T, cmap='Blues') #.T to transpose histo_comulative to give to '.pcolormesh' the data in the correct order
+mpl.pcolormesh(xedges, yedges, histo_comulative.T, cmap='Blues') # '.T' to transpose 'histo_comulative' in order to give to '.pcolormesh' the data in the correct format
 mpl.colorbar(label="Number of haloes")
 mpl.title('Comulative 2-D histogram of haloes with Tot_mass > 3.07*10^9 Mass_sun/h' )
 mpl.xlabel("Tot_mass [10^10 M_sun/h] (log)")
