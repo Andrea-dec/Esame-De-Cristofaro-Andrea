@@ -13,7 +13,7 @@ Per verificare l'esercizio 8 Bash, nell'ultima riga di codice inserire al posto 
 
 Per verificare l'esercizio Python copiare il file: 'file2.txt' nella cartella in cui lavora l'interprete Python, quindi eseguire il codice con l'interprete Python.
 
-Il codice Python genererà i plot di ogni 'task' dell'esercizio (6 in totale).
+Il codice Python genererà i grafici relativi ad ogni 'task' dell'esercizio (6 in totale).
 
 Commenti:
 
