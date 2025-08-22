@@ -23,7 +23,7 @@ Task 2: Il grafico in scala log-log ha reso più leggibili i dati sperimentali.
 
 Task 3: Per ottenere un istogramma leggibile, gli intervalli dei bin dell'asse x dell'istogramma sono stati distribuiti in scala logaritmica, quindi anche l'asse x del grafico è stato visualizzato in scala logaritmica.
 
-Task 4: Per rendere la 'colormap' leggibile, i dati relativi alla 'Gas_mass' sono stati convertiti in scala logaritmica; lo stesso è stato fatto per 'Stellar_mass' che rappresenta la dimensione dei punti sperimentali. In entrambi i casi sono anche state anche utilizzate due costanti, 'riscale1' e 'riscale2', per rendere apprezzabili il colore e la dimensione dei punti nel grafico.
+Task 4: Per rendere la 'colormap' leggibile, i dati relativi alla 'Gas_mass' sono stati convertiti in scala logaritmica; lo stesso è stato fatto per 'Stellar_mass' che rappresenta la dimensione dei punti sperimentali. In entrambi i casi sono anche state anche utilizzate le costanti 'riscale1' e 'riscale2' per rendere apprezzabili il colore e la dimensione dei punti nel grafico.
 
 Task 5: I dati sperimentali sono stati prima converititi in scala logaritmica, poi fittati e plottati. In questo modo il fit lineare sembra riprodurre bene l'andamento dei dati.
 
