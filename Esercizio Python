@@ -1,10 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as mpl
-import matplotlib.colors as mcolors
 
 #Load data from the file file2.txt
 filename = 'file2.txt'
 
+#Creating empty lists
 Tot_mass = []
 Gas_mass = []
 DM_mass = []
@@ -44,6 +44,7 @@ pos_z = np.array(pos_z)
 #FIRST TASK
 
 Barionic_mass = Gas_mass + Stellar_mass
+
 #Linear fit
 coeff = np.polyfit(Barionic_mass,DM_mass, 1)
 m=coeff[0]
@@ -62,10 +63,10 @@ mpl.legend()
 mpl.show()
 
 #Plotting log-log scale
-mpl.ylabel('DM_mass [10^10 M_sun/h]')
-mpl.xlabel('Barionic_mass [10^10 M_sun/h]')
 mpl.xscale('log')
 mpl.yscale('log')
+mpl.ylabel('DM_mass [10^10 M_sun/h]')
+mpl.xlabel('Barionic_mass [10^10 M_sun/h]')
 mpl.plot(Barionic_mass, DM_mass, marker='o', linestyle='none', label='data')
 mpl.title('log-log scale')
 mpl.legend()
@@ -80,25 +81,26 @@ for i, item in enumerate(Tot_mass):
   if Tot_mass[i]>Tot_mass[idx]:
     idx = i
 
-#Calculating distance of the other structures from the most massive one
+#Computing distance of the other structures from the most massive one
 distance = []
 for i in range(len(pos_x)):
   distance.append(np.sqrt((pos_x[i]-pos_x[idx])**2+(pos_y[i]-pos_y[idx])**2+(pos_z[i]-pos_z[idx])**2))
  
 distance=np.array(distance)
 
-#Plotting in linear-log scale
+#Plotting in log-log scale
 mpl.ylabel('Distance from most massive structure [ckpc/h]')
 mpl.xlabel('Total_mass [10^10 M_sun/h]')
+mpl.xscale('log')
 mpl.yscale('log')
 mpl.plot(distance, Tot_mass, marker='o', color='coral', linestyle='none')
-mpl.title('linear-log scale')
+mpl.title('log-log scale')
 mpl.show()
 
 
 #THIRD TASK
 
-#Creating and plotting histogram of DM_mass distribution and evaluating mean and median
+#Creating and plotting histogram of DM_mass distribution in log-log scale and evaluating mean and median
 mpl.xscale('log')
 mpl.yscale('log')
 mpl.xlabel('DM_mass [10^10 M_sun/h]')
@@ -118,7 +120,7 @@ mpl.show()
 #FOURTH TASK
 
 #Plotting x-y projection of data
-
+#Creating figure with two panels
 fig, (ax1, ax2) = mpl.subplots(1,2, sharey=True, figsize=(22, 8))
 fig.suptitle('Projected distribution of haloes (dots size scaling with stellar mass)')
 
@@ -126,15 +128,17 @@ ax1.set_ylabel('pos_y [ckpc/h]')
 ax1.set_xlabel('pos_x [ckpc/h]')
 ax1.set_title('x-y plane')
 
-riscale=10**5 #Riscaling constant
-ax1.scatter(pos_x, pos_y, c=np.log10(Gas_mass*riscale+1e-5), cmap='Greens_r', s=np.log10(Stellar_mass*riscale+1e-5)*20, label='scatter dots')
+riscale1=10**5 #Riscaling constant 
+riscale2=20 #Riscaling constant
+
+ax1.scatter(pos_x, pos_y, c=np.log10(Gas_mass*riscale1+1e-5), cmap='Greens_r', s=np.log10(Stellar_mass*riscale1+1e-5)*riscale2, label='scatter dots')
 ax1.legend()
 
 
 #Plotting z-y projection of data
 ax2.set_xlabel('pos_z [ckpc/h]')
 ax2.set_title('z-y plane')
-sc=ax2.scatter(pos_z, pos_y, c=np.log10(Gas_mass*riscale+1e-5), cmap='Greens_r', s=np.log10(Stellar_mass*riscale+1e-5)*20, label='scater dots')
+sc=ax2.scatter(pos_z, pos_y, c=np.log10(Gas_mass*riscale1+1e-5), cmap='Greens_r', s=np.log10(Stellar_mass*riscale1+1e-5)*riscale2, label='scater dots')
 cbar = mpl.colorbar(sc, ax=ax2)
 cbar.set_label("Gas Mass [10^5 M_sun/h] (log)")
 ax2.legend()
@@ -144,7 +148,7 @@ mpl.show()
 mpl.ylabel('pos_z [ckpc/h]')
 mpl.xlabel('pos_x [ckpc/h]')
 mpl.title('Projected distribution of haloes x-z plane')
-sc1=mpl.scatter(pos_x, pos_z, c=np.log10(Gas_mass*riscale+1e-5), cmap='Greens_r', s=np.log10(Stellar_mass*riscale+1e-5)*10, label='scater dots')
+sc1=mpl.scatter(pos_x, pos_z, c=np.log10(Gas_mass*riscale1+1e-5), cmap='Greens_r', s=np.log10(Stellar_mass*riscale1+1e-5)*riscale2/2, label='scater dots')
 cbar = mpl.colorbar(sc1)
 cbar.set_label("Gas Mass [10^5 M_sun/h] (log)")
 mpl.legend()
@@ -153,8 +157,8 @@ mpl.show()
 
 #FIFTH TASK
 
-#Creating new array of BH and Stellar mass, keeping only values with BH_mass > 8*10^5 M/h
-lim=8.*10**-5
+#Creating new array of BH and Stellar mass, keeping only values with BH_mass > 8*10^5 M_sun/h = (8*10^-5)*10^10 M_sun/h
+lim=8.*10**-5 
 BH_mass2=[]
 Stellar_mass2=[]
 for i, item in enumerate(BH_mass):
@@ -166,7 +170,7 @@ for i, item in enumerate(BH_mass):
 BH_mass2=np.array(BH_mass2)
 Stellar_mass2=np.array(Stellar_mass2)
 
-#Linear fit
+#Linear fit with log values
 coeff = np.polyfit(np.log10(Stellar_mass2), np.log10(BH_mass2), 1)
 m=coeff[0]
 q=coeff[1]
@@ -184,21 +188,25 @@ mpl.title('Haloes with BH_mass > 8*10^5 M / h (log-log scale)')
 mpl.legend()
 mpl.show()
 
+
 #SIXTH TASK
 
+#Commputing distance of all other haloes from haloes whose mass is > 3.07*10^9 M_sun/h = 0.307*10^10 M_sun/h (5 in total)
+#Creating matrices (5,455)
 dist=np.zeros((5,len(pos_x)-1))
 Tot_mass_otherhaloes=np.zeros((5,len(pos_x)-1))
 j=-1
 for i in range(len(Tot_mass)):
- if ((Tot_mass[i]-0.307)>1.5):   #1.5 valore per ottenre 5 aloni, 1.2 ne escono 6, e a 2.6 ne escono 3
+ if ((Tot_mass[i]-0.307)>1.5):   #1.5 threshold value to obtain the 5 haloes whose mass is bigger then 3.07*10^9 M_sun/h 
   j=j+1
   p=0
   for k in range(len(pos_x)):
    if (k != i):
-    dist[j,p]=np.sqrt((pos_x[i]-pos_x[k])**2+(pos_y[i]-pos_y[k])**2+(pos_z[i]-pos_z[k])**2)
-    Tot_mass_otherhaloes[j,p]=Tot_mass[k]
+    dist[j,p]=np.sqrt((pos_x[i]-pos_x[k])**2+(pos_y[i]-pos_y[k])**2+(pos_z[i]-pos_z[k])**2) #Saving distances
+    Tot_mass_otherhaloes[j,p]=Tot_mass[k]                                                   #Saving all other masses (except of the i-th haloes whose mass is bigger then 3.07*10^9 M_sun/h)
     p=p+1
 
+#Creating arrays containing distances and masses for each of the 5 haloes
 dist1=dist[0,]
 Tot_mass_otherhaloes1=Tot_mass_otherhaloes[0,]
 Tot_mass_otherhaloes1=np.array(Tot_mass_otherhaloes1)
@@ -224,19 +232,21 @@ Tot_mass_otherhaloes5=Tot_mass_otherhaloes[4,]
 Tot_mass_otherhaloes5=np.array(Tot_mass_otherhaloes5)
 dist5=np.array(dist5)
 
-mass_bins = np.logspace(np.log10(Tot_mass_otherhaloes1.min()+1e-5), np.log10(Tot_mass_otherhaloes1.max()), 20)
+#Obtaining 2-D histograms for each of the 5 haloes
+mass_bins = np.logspace(np.log10(Tot_mass_otherhaloes1.min()+1e-5), np.log10(Tot_mass_otherhaloes1.max()), 20) #Riscaling mass x-axis in the histograms
 histo1,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes1, dist1, bins=[mass_bins, 20])
 histo2,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes2, dist2, bins=[mass_bins, 20])
 histo3,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes3, dist3, bins=[mass_bins, 20])
 histo4,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes4, dist4, bins=[mass_bins, 20])
-histo5,xedges,yedge=np.histogram2d(Tot_mass_otherhaloes5, dist5, bins=[mass_bins, 20])
+histo5,xedges,yedges=np.histogram2d(Tot_mass_otherhaloes5, dist5, bins=[mass_bins, 20])
 
+#Obtaining and plotting comulative 2-D histograms summing up all 5 histograms
+#Setting log scale only on x-axis
+mpl.xscale('log')
 histo_comulative=histo1+histo2+histo3+histo4+histo5
-
-mpl.pcolormesh(xedges, yedges, histo_comulative.T,cmap='Blues')
+mpl.pcolormesh(xedges, yedges, histo_comulative.T, cmap='Blues') #.T to transpose histo_comulative to give to '.pcolormesh' the data in the correct order
 mpl.colorbar(label="Number of haloes")
 mpl.title('Comulative 2-D histogram of haloes with Tot_mass > 3.07*10^9 Mass_sun/h' )
-mpl.xlabel("Tot_mass [10^10 M_sun/h]")
+mpl.xlabel("Tot_mass [10^10 M_sun/h] (log)")
 mpl.ylabel("Distance [ckpc/h]")
-mpl.xscale('log')
 mpl.show()
