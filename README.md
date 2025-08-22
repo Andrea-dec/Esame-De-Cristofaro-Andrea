@@ -17,7 +17,7 @@ Il codice Python genererà i plot di ogni 'task' dell'esercizio (6 in totale).
 
 Commenti:
 
-Task 1: Dopo aver sovrapposto il fit lineare ai dati, si mostrano questi ultimi anche in un grafico in scala log-log. Il grafico in scala log-log sembra permettere una maggiore leggibilità dei dati. È stato anche fatto un tentativo di fit lineare dei dati in scala logaritmica, tuttavia il fit lineare non sembra rispecchiare accuratamente l'andamento dei punti sperimentali.
+Task 1: Dopo aver sovrapposto il fit lineare ai dati, si mostrano questi ultimi anche in un grafico in scala log-log. Il grafico in scala log-log sembra permetta una maggiore leggibilità dei dati. In un tentativo, i dati sono stati convertiti in scala logaritmica e poi fittati, tuttavia il fit lineare non sembrava rispecchiare accuratamente l'andamento dei punti sperimentali.
 
 Task 2: Il grafico in scala log-log ha reso più leggibili i dati sperimentali.
 
