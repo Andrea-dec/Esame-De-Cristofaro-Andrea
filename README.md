@@ -1,7 +1,7 @@
 # Esame-De-Cristofaro-Andrea
 ## Corso: Abilità Informatiche e telematiche
 
-Sono riportati gli scripts della risoluzione degli esercizi 3, 4, 5 e 8 di Bash, e dell'esercizio di Python. 
+Sono riportati i codici della risoluzione degli esercizi 3, 4, 5 e 8 di Bash, e dell'esercizio di Python. 
 
 Istruzioni:
 
