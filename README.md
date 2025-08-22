@@ -14,3 +14,14 @@ Per verificare l'esercizio 8 Bash, nell'ultima riga di codice inserire al posto 
 Per verificare l'esercizio Python copiare il file: 'file2.txt' nella cartella in cui lavora l'interprete Python, copiare il codice nel proprio ambiente di lavoro, quindi eseguire il codice con l'interprete Python.
 
 Il codice Python genererà i plot di ogni 'task' dell'esercizio (6 in totale).
+
+Commenti:
+Task 1: Dopo aver sovrapposto il fit lineare ai dati si mostrano questi ultimi anche in un grafico in scala log-log. In scala log-log sembra ci sia una maggiore leggibilità dei dati; è stato anche fatto un tentativo di fit lineare dei dati in scala logaritmica, tuttavia un fit lineare di questi dati non sembrava rispecchiarne accuratamente l'andamento.
+
+Task 2-3: Anche per questi punti, il grafico in scala log-log ha reso più leggibili i dati sperimentali.
+
+Task 4: Per rendere la 'colormap' leggibile i dati relativi alla 'Gas_mass' sono stati riscalati in scala logaritmica; lo stesso è stato fatto per la 'Stellar_mass' che ha codificato la dimensione dei punti sperimentali. In entrambi i casi sono anche state anche utilizzate due costanti, 'riscale1' e 'riscale2', per rendere apprezzabili il colore e la dimensione dei punti nel grafico.
+
+Task 5: I dati sperimentali sono stati prima converititi in scala logaritmica e poi fittati e plottati. In questo modo il fit lineare sembra riprodurre bene l'andamento dei dati.
+
+Task 6: Anche per questo punto gli intervalli dei bin dell'asse x degli istogrammi sono stati distribuiti in scala logaritmica, quindi utilizzato l'asse x, che rappresenta le masse delle strutture, dell'istogramma comulativo finale è stato visualizzato in scala logaritmica.
