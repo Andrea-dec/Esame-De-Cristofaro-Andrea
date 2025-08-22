@@ -4,10 +4,13 @@
 Sono riportati gli scripts della risoluzione degli esercizi 3, 4, 5 e 8 di Bash, e dell'esercizio di Python. 
 
 Istruzioni:
-Per verificare gli esercizi di Bash copiare ed eseguire i codici nella SHELL; per l'esercizio di Python copiare il file 'file2.txt' nella cartella in cui lavora l'interprete Python, copiare il codice nel proprio ambiente di lavoro, quindi eseguire il codice con l'interprete Python.
+
+Per verificare gli esercizi di Bash copiare ed eseguire i codici nella SHELL.
 
 L'esercizio 5 di Bash produrrà nella directory corrente un file.txt al cui interno vi saranno i primi 10 numeri interi (da 1 a 10) in colonna. 
 
 Per verificare l'esercizio 8 Bash, nell'ultima riga di codice inserire al posto di '/filepath', il percorso file di una directory di cui si vogliono elencare i file. Ad esempio: '/Users/andreadecristofaro/Desktop/Trieste'.
+
+Per l'esercizio di Python copiare il file: 'file2.txt' nella cartella in cui lavora l'interprete Python, copiare il codice nel proprio ambiente di lavoro, quindi eseguire il codice con l'interprete Python.
 
 Il codice Python genererà i plot di ogni 'task' dell'esercizio (6 in totale).
