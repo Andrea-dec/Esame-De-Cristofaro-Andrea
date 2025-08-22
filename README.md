@@ -16,6 +16,7 @@ Per verificare l'esercizio Python copiare il file: 'file2.txt' nella cartella in
 Il codice Python genererà i plot di ogni 'task' dell'esercizio (6 in totale).
 
 Commenti:
+
 Task 1: Dopo aver sovrapposto il fit lineare ai dati si mostrano questi ultimi anche in un grafico in scala log-log. In scala log-log sembra ci sia una maggiore leggibilità dei dati; è stato anche fatto un tentativo di fit lineare dei dati in scala logaritmica, tuttavia un fit lineare di questi dati non sembrava rispecchiarne accuratamente l'andamento.
 
 Task 2: Il grafico in scala log-log ha reso più leggibili i dati sperimentali.
