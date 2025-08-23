@@ -18,14 +18,14 @@ Il codice Python genererà i grafici relativi ad ogni 'task' dell'esercizio (6 i
 Commenti:
 
 Task 1: Dopo aver sovrapposto il fit lineare ai dati sperimentali, si nota come un solo punto nel grafico sia molto più lontano dagli altri, influenzando molto il fit. 
-Si mostrano anche i dati in un grafico in scala log-log: il grafico sembra permetta una maggiore leggibilità dei dati. In un tentativo, i dati sono stati convertiti in scala logaritmica e poi fittati, tuttavia il fit lineare non sembrava comunque rispecchiare accuratamente l'andamento dei punti sperimentali. 
+Si mostrano anche i dati in un grafico in scala log-log: il grafico sembra permetta una maggiore leggibilità dei dati. In un tentativo, si è calcolato il logaritmo dei dati e questi sono poi stati fittati, tuttavia il fit lineare non sembrava comunque rispecchiare accuratamente l'andamento dei punti sperimentali. 
 
 Task 2: Il grafico in scala log-log ha reso più leggibili i dati sperimentali.
 
 Task 3: Per ottenere un istogramma leggibile, gli intervalli dei bin dell'asse x dell'istogramma sono stati distribuiti in scala logaritmica, quindi anche l'asse x del grafico è stato visualizzato in scala logaritmica.
 
-Task 4: Per rendere la 'colormap' leggibile, i dati relativi alla 'Gas_mass' sono stati convertiti in scala logaritmica; lo stesso è stato fatto per 'Stellar_mass' che rappresenta la dimensione dei punti sperimentali. In entrambi i casi sono anche state anche utilizzate le costanti 'riscale1' e 'riscale2' per rendere apprezzabili il colore e la dimensione dei punti nel grafico.
+Task 4: Per rendere la 'colormap' leggibile, è stato calcolato il logaritmo dei dati relativi alla 'Gas_mass', lo stesso è stato fatto per 'Stellar_mass', che rappresenta la dimensione dei punti sperimentali. In entrambi i casi sono anche state anche utilizzate le costanti 'riscale1' e 'riscale2' per rendere apprezzabili il colore e la dimensione dei punti nel grafico.
 
-Task 5: I dati sperimentali sono stati prima converititi in scala logaritmica, poi fittati e plottati. In questo modo il fit lineare sembra riprodurre bene l'andamento dei dati.
+Task 5: È stato calcolato il logaritmo dei dati sperimentali, questi sono poi stati fittati e plottati. In questo modo il fit lineare sembra riprodurre bene l'andamento dei dati.
 
 Task 6: Anche per questo punto gli intervalli dei bin dell'asse x degli istogrammi sono stati distribuiti in scala logaritmica, quindi l'asse x dell'istogramma comulativo finale, che rappresenta le masse delle strutture, è stato visualizzato in scala logaritmica.
